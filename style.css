@@ -100,3 +100,45 @@ body.dark-mode .project-card p, body.dark-mode .tech-icons { color: #d1d5db; }
 
 /* ---------------- SECTION HOVER ---------------- */
 section:hover { transform: scale(1.01); box-shadow: 0 12px 25px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+section {
+  border-radius: 15px;
+  padding: 60px 20px;
+  margin: 20px;
+  background: linear-gradient(270deg, #e0f7fa, #f1f8e9);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Dark mode tweak for gradients */
+body.dark-mode section {
+  background: linear-gradient(270deg, #1f2937, #374151);
+  animation: gradientShiftDark 15s ease infinite;
+}
+@keyframes gradientShiftDark {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.project-card {
+  transition: transform 0.6s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-15px) rotateZ(1deg);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.gradient-btn {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+body { font-family: 'Inter', sans-serif; }
