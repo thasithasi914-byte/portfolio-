@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thasi Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    html { scroll-behavior: smooth; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thasi Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  html { scroll-behavior: smooth; }
+</style>
 </head>
 <body>
-<button id="backToTop">⬆️</button>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -36,20 +35,23 @@
     <div class="project-card">
       <h3>Portfolio Website</h3>
       <p>Clean, responsive personal portfolio website.</p>
-      <a href="https://yourusername.github.io/portfolio" target="_blank">View Site</a>
-      <a href="https://github.com/yourusername/portfolio" target="_blank">Code</a>
+      <div class="tech-icons">HTML • CSS • JS</div>
+      <a href="https://yourusername.github.io/portfolio" target="_blank" class="gradient-btn">View Site</a>
+      <a href="https://github.com/yourusername/portfolio" target="_blank" class="gradient-btn">Code</a>
     </div>
     <div class="project-card">
       <h3>Calculator App</h3>
       <p>Interactive calculator with colorful buttons.</p>
-      <a href="https://yourusername.github.io/calculator" target="_blank">View Site</a>
-      <a href="https://github.com/yourusername/calculator" target="_blank">Code</a>
+      <div class="tech-icons">HTML • CSS • JS</div>
+      <a href="https://yourusername.github.io/calculator" target="_blank" class="gradient-btn">View Site</a>
+      <a href="https://github.com/yourusername/calculator" target="_blank" class="gradient-btn">Code</a>
     </div>
     <div class="project-card">
       <h3>Task Manager</h3>
       <p>Save and organize tasks with persistent storage.</p>
-      <a href="https://yourusername.github.io/taskmanager" target="_blank">View Site</a>
-      <a href="https://github.com/yourusername/taskmanager" target="_blank">Code</a>
+      <div class="tech-icons">HTML • CSS • JS</div>
+      <a href="https://yourusername.github.io/taskmanager" target="_blank" class="gradient-btn">View Site</a>
+      <a href="https://github.com/yourusername/taskmanager" target="_blank" class="gradient-btn">Code</a>
     </div>
   </div>
 </section>
@@ -64,22 +66,18 @@
       <button onclick="press('8')">8</button>
       <button onclick="press('9')">9</button>
       <button class="operator" onclick="press('/')">/</button>
-
       <button onclick="press('4')">4</button>
       <button onclick="press('5')">5</button>
       <button onclick="press('6')">6</button>
       <button class="operator" onclick="press('*')">*</button>
-
       <button onclick="press('1')">1</button>
       <button onclick="press('2')">2</button>
       <button onclick="press('3')">3</button>
       <button class="operator" onclick="press('-')">-</button>
-
       <button onclick="press('0')">0</button>
       <button onclick="press('.')">.</button>
       <button class="equals" onclick="calculate()">=</button>
       <button class="operator" onclick="press('+')">+</button>
-
       <button class="clear" onclick="clearDisplay()">C</button>
     </div>
   </div>
@@ -103,29 +101,28 @@
   <p style="text-align:center;">Email: your-email@example.com</p>
 </section>
 
+<!-- BACK TO TOP -->
+<button id="backToTop">⬆️</button>
+
 <!-- SCRIPT -->
 <script>
-// ---------------- CALCULATOR ----------------
+// ---------- CALCULATOR ----------
 const display = document.getElementById('display');
 function press(num) { display.value += num; }
 function clearDisplay() { display.value = ''; }
-function calculate() {
-  try { display.value = eval(display.value); }
-  catch { display.value = 'Error'; }
-}
+function calculate() { try { display.value = eval(display.value); } catch { display.value = 'Error'; } }
 
-// ---------------- DARK MODE ----------------
+// ---------- DARK MODE ----------
 const toggleButton = document.getElementById('darkModeToggle');
 toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 });
 
-// ---------------- TODO APP ----------------
+// ---------- TODO APP ----------
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 const clearAllButton = document.getElementById("clearAll");
-
 window.addEventListener("load", loadTasks);
 
 function addTask() {
@@ -188,7 +185,7 @@ clearAllButton.addEventListener("click", () => {
   }
 });
 
-// ---------------- FADE IN ----------------
+// ---------- FADE IN ----------
 const faders = document.querySelectorAll('.fade-in');
 const appearOptions = { threshold: 0.1 };
 const appearOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -199,24 +196,14 @@ const appearOnScroll = new IntersectionObserver(function(entries, observer) {
   });
 }, appearOptions);
 faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-</body>
-</html>
-<a href="https://yourusername.github.io/calculator" target="_blank" class="gradient-btn">View Site</a>
-<a href="https://github.com/yourusername/calculator" target="_blank" class="gradient-btn">Code</a>
-<div class="project-card">
-  <h3>Calculator App</h3>
-  <p>Interactive calculator with colorful buttons.</p>
-  <div class="tech-icons">
-    <span>HTML</span> • <span>CSS</span> • <span>JS</span>
-  </div>
-</div>
-<script>
+
+// ---------- BACK TO TOP ----------
 const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) backToTop.style.display = 'block';
   else backToTop.style.display = 'none';
 });
-
 backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 </script>
+</body>
+</html>
