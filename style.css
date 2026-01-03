@@ -85,3 +85,32 @@ body.dark-mode .operator { background-color: #f59e0b; }
 body.dark-mode .equals { background-color: #10b981; }
 body.dark-mode .clear, body.dark-mode #clearAll { background-color: #ef4444; }
 body.dark-mode .project-card p { color: #d1d5db; }
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+  transition: transform 0.2s, opacity 0.2s;
+}
+section {
+  padding: 50px 20px;
+}
+
+.project-card, .calculator, .todo-container {
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+body {
+  background: linear-gradient(135deg, #f0f4f8, #e0e7ff);
+}

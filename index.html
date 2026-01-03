@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thasi Portfolio</title>
@@ -176,3 +181,17 @@
   </script>
 </body>
 </html>
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold: 0.1 };
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
