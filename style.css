@@ -1,0 +1,87 @@
+/* ---------------- GENERAL ---------------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9fafb;
+  color: #111;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2 { text-align: center; margin-top: 30px; }
+.subtitle { text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 40px; }
+
+/* ---------------- NAVBAR ---------------- */
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px 0;
+  background: #3b82f6;
+  margin: 0;
+}
+.navbar li { margin: 0 10px; }
+.navbar a, .navbar button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------------- PROJECTS ---------------- */
+.projects { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+.project-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-top: 4px solid #3b82f6;
+}
+
+/* ---------------- CALCULATOR ---------------- */
+.calculator { max-width: 250px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+#display { width: 100%; height: 40px; margin-bottom: 10px; text-align: right; font-size: 18px; }
+.buttons button { width: 50px; height: 40px; margin: 2px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; }
+.operator { background-color: #f59e0b; color: white; }
+.equals { background-color: #10b981; color: white; }
+.clear { background-color: #ef4444; color: white; }
+
+/* ---------------- TODO APP ---------------- */
+.todo-container {
+  max-width: 400px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.todo-container input { width: 70%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; }
+.todo-container button { padding: 10px 14px; margin: 5px; border-radius: 6px; border: none; cursor: pointer; }
+#clearAll { background-color: #ef4444; color: white; transition: transform 0.2s, opacity 0.2s; }
+#clearAll:hover { transform: scale(1.05); opacity: 0.9; }
+.todo-container ul { list-style: none; padding: 0; margin-top: 20px; }
+.todo-container li {
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.completed { text-decoration: line-through; color: #9ca3af; }
+
+/* ---------------- DARK MODE ---------------- */
+body.dark-mode { background-color: #111827; color: #f3f4f6; }
+body.dark-mode h1, body.dark-mode h2 { color: #f3f4f6; }
+body.dark-mode .calculator, body.dark-mode .project-card, body.dark-mode .todo-container { background-color: #1f2937; box-shadow: 0 4px 10px rgba(255,255,255,0.1); }
+body.dark-mode #display { background-color: #374151; color: #f3f4f6; border-color: #4b5563; }
+body.dark-mode button { background-color: #3b82f6; color: white; }
+body.dark-mode .operator { background-color: #f59e0b; }
+body.dark-mode .equals { background-color: #10b981; }
+body.dark-mode .clear, body.dark-mode #clearAll { background-color: #ef4444; }
+body.dark-mode .project-card p { color: #d1d5db; }

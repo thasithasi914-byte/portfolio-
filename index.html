@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thasi Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#todo">Student Task Manager</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button id="darkModeToggle">🌙</button></li>
+    </ul>
+  </nav>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <h1>Hi, I'm Thasi 👋</h1>
+    <p class="subtitle">Student developer building simple and clean web apps.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>Clean, mobile-friendly personal website.</p>
+      </div>
+      <div class="project-card">
+        <h3>Calculator App</h3>
+        <p>Simple interactive calculator built with JavaScript.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section id="calculator">
+    <h2>Calculator</h2>
+    <div class="calculator">
+      <input type="text" id="display" disabled>
+      <div class="buttons">
+        <button onclick="press('7')">7</button>
+        <button onclick="press('8')">8</button>
+        <button onclick="press('9')">9</button>
+        <button class="operator" onclick="press('/')">/</button>
+
+        <button onclick="press('4')">4</button>
+        <button onclick="press('5')">5</button>
+        <button onclick="press('6')">6</button>
+        <button class="operator" onclick="press('*')">*</button>
+
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button class="operator" onclick="press('-')">-</button>
+
+        <button onclick="press('0')">0</button>
+        <button onclick="press('.')">.</button>
+        <button class="equals" onclick="calculate()">=</button>
+        <button class="operator" onclick="press('+')">+</button>
+
+        <button class="clear" onclick="clearDisplay()">C</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO APP -->
+  <section id="todo">
+    <h2>Student Task Manager</h2>
+    <p style="text-align:center;">Save your daily tasks and stay organized.</p>
+    <div class="todo-container">
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button onclick="addTask()">Add</button>
+      <button id="clearAll">Clear All Tasks</button>
+      <ul id="taskList"></ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center;">Email: your-email@example.com</p>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+  // ---------------- CALCULATOR ----------------
+  const display = document.getElementById('display');
+  function press(num) { display.value += num; }
+  function clearDisplay() { display.value = ''; }
+  function calculate() {
+    try { display.value = eval(display.value); }
+    catch { display.value = 'Error'; }
+  }
+
+  // ---------------- DARK MODE ----------------
+  const toggleButton = document.getElementById('darkModeToggle');
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  });
+
+  // ---------------- TODO APP ----------------
+  const taskInput = document.getElementById("taskInput");
+  const taskList = document.getElementById("taskList");
+  const clearAllButton = document.getElementById("clearAll");
+
+  window.addEventListener("load", loadTasks);
+
+  function addTask() {
+    if (taskInput.value.trim() === "") return;
+    const task = { text: taskInput.value, completed: false };
+    saveTask(task);
+    createTaskElement(task);
+    taskInput.value = "";
+  }
+
+  function createTaskElement(task) {
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.innerText = task.text;
+    if (task.completed) span.classList.add("completed");
+    span.onclick = () => toggleTask(span, task.text);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "❌";
+    deleteBtn.onclick = () => deleteTask(task.text);
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
+  }
+
+  function saveTask(task) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function loadTasks() {
+    taskList.innerHTML = "";
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(task => createTaskElement(task));
+  }
+
+  function toggleTask(span, text) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.map(task => {
+      if (task.text === text) {
+        task.completed = !task.completed;
+        span.classList.toggle("completed");
+      }
+      return task;
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function deleteTask(text) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.filter(task => task.text !== text);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    loadTasks();
+  }
+
+  clearAllButton.addEventListener("click", () => {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+      localStorage.removeItem("tasks");
+      loadTasks();
+    }
+  });
+  </script>
+</body>
+</html>
